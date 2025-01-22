@@ -4,10 +4,10 @@
   }
   .video-section-tutorial {
     flex-direction: column;
-    gap: 50px;
+    gap: 32px;
+    margin-top: 16px;
   }
   .video-progress-container {
-    /* flex-direction: row; */
     margin-left: 0;
     align-items: start;
   }
@@ -24,6 +24,13 @@
 @media screen and (max-width: 500px) {
   header {
     display: none;
+  }
+  .quiz-summary-box {
+    margin-top: 32px;
+    padding-bottom: 0;
+  }
+  .quiz-summary-text-col {
+    padding: 0;
   }
   .quiz-summary-title {
     font-size: 24px;
@@ -48,6 +55,9 @@
   ul.pack-description-list > li {
     font-size: 20px;
   }
+  .hero-image-container {
+    margin-top: 32px;
+  }
   .card-header h3 {
     font-size: 20px;
     line-height: 26px;
@@ -55,5 +65,10 @@
   .card-text {
     font-size: 16px;
     line-height: 24px;
+  }
+  footer {
+    margin-top: 20px;
+    font-size: 12px;
+    line-height: 16px;
   }
 }
