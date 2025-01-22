@@ -1,0 +1,59 @@
+@media screen and (max-width: 800px) {
+  .quiz-summary-box {
+    flex-direction: column;
+  }
+  .video-section-tutorial {
+    flex-direction: column;
+    gap: 50px;
+  }
+  .video-progress-container {
+    /* flex-direction: row; */
+    margin-left: 0;
+    align-items: start;
+  }
+  .video-progress-bar {
+    height: 5px;
+    width: 0px;
+    transition: width 0.4s linear;
+  }
+  .tutorial-cards {
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  header {
+    display: none;
+  }
+  .quiz-summary-title {
+    font-size: 24px;
+  }
+  .start-button {
+    margin-top: 32px;
+    padding: 10px 16px;
+    font-size: 14px;
+    line-height: 18px;
+  }
+  .start-button > img {
+    width: 16px;
+    height: 16px;
+  }
+  .video-section-title {
+    font-size: 32px;
+    line-height: 42px;
+  }
+  .pack-description-title {
+    font-size: 20px;  
+  }
+  ul.pack-description-list > li {
+    font-size: 20px;
+  }
+  .card-header h3 {
+    font-size: 20px;
+    line-height: 26px;
+  }
+  .card-text {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
