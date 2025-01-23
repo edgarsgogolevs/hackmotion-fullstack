@@ -1,13 +1,3 @@
-const MOBILE_PAGE = "/mobile.html"
-
-if (window.matchMedia("(max-width: 800px)").matches) {
-  if (!window.location.href.includes(MOBILE_PAGE)){
-    window.location.href = MOBILE_PAGE;
-  }
-} else if (window.location.href.includes(MOBILE_PAGE)) {
-  window.location.href = "/";
-}
-
 // Video handler
 const video = document.getElementById("videoTutorial");
 const progress = document.getElementById("videoProgress");

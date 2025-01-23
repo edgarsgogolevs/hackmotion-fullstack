@@ -77,6 +77,14 @@ section {
   padding: 32px;
 }
 
+#heroMobile {
+  display: none;
+}
+
+#heroDesktop {
+  display: flex;
+}
+
 .hero-image-container {
   display: flex;
   height: 100%;

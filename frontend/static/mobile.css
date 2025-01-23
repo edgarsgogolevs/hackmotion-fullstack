@@ -58,6 +58,12 @@
   .hero-image-container {
     margin-top: 32px;
   }
+  #heroMobile {
+    display: flex;
+  }
+  #heroDesktop {
+    display: none;
+  }
   .card-header h3 {
     font-size: 20px;
     line-height: 26px;

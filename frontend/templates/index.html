@@ -4,8 +4,8 @@
   <title>HackMotion (Edgars Gogolevs)</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="mobile.css">
+  <link rel="stylesheet" href="/static/styles.css">
+  <link rel="stylesheet" href="/static/mobile.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -15,7 +15,7 @@
 
 <body>
   <header>
-    <img class="logo" src="./assets/images/logo.png" alt="HackMotion logo">
+    <img class="logo" src="/static/assets/images/logo.png" alt="HackMotion logo">
   </header>
   <main>
     <section class="quiz-summary-box">
@@ -32,16 +32,27 @@
             <li>Game improvement plan by HackMotion</li>
           </ul>
           <button onclick="startNowHandler()" class="start-button alt-text">
-            Start Now <img src="./assets/images/right-arrow.svg" alt="Right arrow">
+            Start Now <img src="/static/assets/images/right-arrow.svg" alt="Right arrow">
           </button>
         </div>
       </div>
-      <div class="hero-image-container">
+      <div id="heroMobile" class="hero-image-container">
         <div class="hero-image-container__graph">
-          <img src="./assets/images/improvement_graph.png" alt="Improvement graph">
+          <img src="/static/assets/images/imp_graph_mobile.png" alt="Improvement graph">
         </div>
         <div class="hero-image-container__info">
-          <img class="mt" src="./assets/images/frame_desktop.png" alt="Improvement info">
+          <img class="mt" src="/static/assets/images/improvement_mobile.png" alt="Improvement info">
+        </div>
+        <div class="hero-image-container__info">
+          <img class="mt" src="/static/assets/images/rate_mobile.png" alt="Improvement info">
+        </div>
+      </div>
+      <div id="heroDesktop" class="hero-image-container">
+        <div class="hero-image-container__graph">
+          <img src="/static/assets/images/improvement_graph.png" alt="Improvement graph">
+        </div>
+        <div class="hero-image-container__info">
+          <img class="mt" src="/static/assets/images/frame_desktop.png" alt="Improvement info">
         </div>
       </div>
     </section>
@@ -53,7 +64,7 @@
         <div class="video-section-tutorial">
           <div class="video-wrapper">
             <video id="videoTutorial" controls>
-              <source id="videoTutorial" src="./assets/videos/Impact-Drill.mp4" type="video/mp4">
+              <source id="videoTutorial" src="/static/assets/videos/Impact-Drill.mp4" type="video/mp4">
               Video tag is not supported by your browser :(
             </video>
           </div>
@@ -64,7 +75,7 @@
 
             <div id="staticCard" class="tutorial-card">
               <div onclick="toggleCard(this)" class="card-header">
-                <img class="card-toggle-icon" src="./assets/images/expand.svg" alt="Card expand icon">
+                <img class="card-toggle-icon" src="/static/assets/images/expand.svg" alt="Card expand icon">
                 <h3 class="accent-text">Static top drill</h3>
               </div>
               <div class="card-body">
@@ -74,7 +85,7 @@
 
             <div id="dynamicCard" class="tutorial-card">
               <div onclick="toggleCard(this)" class="card-header">
-                <img class="card-toggle-icon" src="./assets/images/expand.svg" alt="Card expand icon">
+                <img class="card-toggle-icon" src="/static/assets/images/expand.svg" alt="Card expand icon">
                 <h3 class="accent-text">Dynamic top drill</h3>
               </div>
               <div class="card-body">
@@ -84,7 +95,7 @@
 
             <div id="fullCard" class="tutorial-card">
               <div onclick="toggleCard(this)" class="card-header">
-                <img class="card-toggle-icon" src="./assets/images/expand.svg" alt="Card expand icon">
+                <img class="card-toggle-icon" src="/static/assets/images/expand.svg" alt="Card expand icon">
                 <h3 class="accent-text">Top full swing challenge</h3>
               </div>
               <div class="card-body">
@@ -99,6 +110,7 @@
   <footer>
     <p>Copyright 2023 © HackMotion | All Rights Reserved</p>
   </footer>
-  <script src="./scripts/index.js"></script>
+  <script src="/static/scripts/index.js"></script>
+  <script src="/static/scripts/analytics.js"></script>
 </body>
 </html>
