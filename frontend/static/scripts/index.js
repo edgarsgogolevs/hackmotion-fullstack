@@ -45,8 +45,9 @@ function toggleCard(cardHeader) {
   card.classList.toggle("active");
 }
 
-function startNowHandler() {
+function startNowHandler(target) {
   const video = document.getElementById("videoTutorial");
   video.scrollIntoView({ behavior: "smooth" });
   video.play();
+  registerClickEvent(target);
 }
