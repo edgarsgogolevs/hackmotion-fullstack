@@ -118,3 +118,34 @@ def prepare_client_data(data: dict) -> dict:
       db_data["feature_geolocation"] = features["geolocation"]
 
   return db_data
+
+
+def get_users_page_view_data():
+  data = db.select(
+    "SELECT uid, COUNT(uid) as event_count, MAX(timestamp) last_event FROM server_events GROUP BY uid")
+  return data
+
+
+def get_total_page_views():
+  return db.select("SELECT COUNT(*) as total FROM server_events")[0]["total"]
+
+
+def get_user_summary(uid: str) -> dict:
+  d = db.select("SELECT COUNT(*) as total FROM server_events WHERE uid=?", (uid,))
+  lg.info(f"Client events: {d}")
+  ret = {
+    "uid": uid,
+    "client_event_count":
+      db.select("SELECT COUNT(*) as total FROM client_events WHERE uid=?", (uid,))[0]["total"],
+    "server_event_count":
+      db.select("SELECT COUNT(*) as total FROM server_events WHERE uid=?", (uid,))[0]["total"],
+    "server_events": []
+  }
+  latest_client_event = db.select("SELECT * FROM client_events WHERE uid=? ORDER BY received_at DESC LIMIT 1", (uid,))
+  lg.info(f"LATEST CLIENT EVENT: {latest_client_event}")
+  if latest_client_event:
+    ret["client_data"] = latest_client_event[0]
+  server_events = db.select("SELECT * FROM server_events WHERE uid=?", (uid,))
+  if server_events:
+    ret["server_events"] = server_events
+  return ret

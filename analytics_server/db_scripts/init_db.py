@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS server_events (
   uid CHAR(32) NOT NULL,
   request_path TEXT NOT NULL,
   host TEXT NOT NULL,
+  ip TEXT NULL,
   session TEXT NULL,
   user_agent TEXT NULL,
   sec_ch_ua TEXT NULL,
@@ -27,7 +28,7 @@ CREATE TABLE IF NOT EXISTS server_events (
 
 lg.info("Creating client_events (if not exists)...")
 cur.execute("""
-CREATE TABLE IF NOT EXISTS server_events (
+CREATE TABLE IF NOT EXISTS client_events (
   uid CHAR(32) NOT NULL,
   event TEXT NOT NULL,
   received_at TEXT NOT NULL,

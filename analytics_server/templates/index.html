@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/style.css">
+    <title>User interactions</title>
+  </head>
+  <body>
+    <h1 class="table-title">User Page Views</h1>
+    <p>Total page views: <b>{{ total_views }}</b></p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>Event count</th>
+          <th>Last page view at</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in data %}
+        <tr>
+          <td><a href="/user_data/{{ row['uid'] }}">{{ row["uid"] }}</a></td>
+          <td>{{ row["event_count"] }}</td>
+          <td>{{ row["last_event"].replace("T", " ") }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>

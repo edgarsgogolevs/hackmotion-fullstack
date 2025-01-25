@@ -26,6 +26,7 @@ def prepare_analytics_data_from_request(uid: str, req: Request) -> dict:
   return {
     "uid": uid,
     "request_path": req.path,
+    "ip": req.remote_addr,
     "host": req.headers.get("host"),
     "session": req.cookies.get("_maybe_session"),
     "user_agent": req.headers.get("User-Agent"),

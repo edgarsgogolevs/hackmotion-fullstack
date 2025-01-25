@@ -1,3 +1,4 @@
+from collections.abc import Sequence
 import logging
 import sqlite3
 from contextlib import contextmanager
@@ -43,7 +44,7 @@ def insert_dict(table: str, data: dict) -> bool:
     return False
 
 
-def select(query: str) -> list[dict]:
+def select(query: str, values: tuple = tuple()) -> list[dict]:
   if not query.strip().lower().startswith('select'):
     lg.error("Invalid select query!")
     return []
@@ -52,12 +53,12 @@ def select(query: str) -> list[dict]:
     with get_db_connection() as conn:
       conn.row_factory = sqlite3.Row
       cursor = conn.cursor()
-      cursor.execute(query)
+      cursor.execute(query, values)
 
       # Convert rows to dictionaries
       rows = [dict(row) for row in cursor.fetchall()]
 
-      lg.debug(f"Successfully executed query: {query}")
+      lg.debug(f"Successfully executed query: {query} <- {values}")
       return rows
 
   except sqlite3.Error as e:

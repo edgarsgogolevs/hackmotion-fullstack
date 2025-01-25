@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/style.css">
+    <title>User Profile</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>User Profile: <span class="uid">{{ uid }}</span></h1>
+      {% if client_data is defined %}
+      <div class="section">
+        <h2 class="section-title">Browser Information</h2>
+        <div class="grid">
+          <div class="data-card">
+            <div class="data-item">
+              <span class="label">User Agent:</span>
+              <span class="value">{{ client_data["user_agent"] }}</span>
+            </div>
+            <div class="data-item">
+              <span class="label">Language:</span>
+              <span class="value">{{ client_data["language"] }}</span>
+            </div>
+            <div class="data-item">
+              <span class="label">Cookies Enabled:</span>
+              <span class="value">{{ client_data["cookies_enabled"] }}</span>
+            </div>
+            <div class="data-item">
+              <span class="label">Do Not Track:</span>
+              <span class="value">{{ client_data["do_not_track"] }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Screen & Window Information</h2>
+        <div class="grid">
+          <div class="data-card">
+            <div class="data-item">
+              <span class="label">Screen Resolution:</span>
+              <span class="value">{{ client_data["screen_width"] }}x{{ client_data["screen_height"] }}</span>
+            </div>
+            <div class="data-item">
+              <span class="label">Available Resolution:</span>
+              <span class="value"
+                >{{ client_data["screen_avail_width"] }}x{{ client_data["screen_avail_height"] }}</span
+              >
+            </div>
+            <div class="data-item">
+              <span class="label">Color Depth:</span>
+              <span class="value">{{ client_data["screen_color_depth"] }}</span>
+            </div>
+            <div class="data-item">
+              <span class="label">Screen Orientation:</span>
+              <span class="value">{{ client_data["screen_orientation"] }}</span>
+            </div>
+          </div>
+          <div class="data-card">
+            <div class="data-item">
+              <span class="label">Window Inner Size:</span>
+              <span class="value"
+                >{{ client_data["window_inner_width"] }}x{{ client_data["window_inner_height"] }}</span
+              >
+            </div>
+            <div class="data-item">
+              <span class="label">Window Outer Size:</span>
+              <span class="value"
+                >{{ client_data["window_outer_width"] }}x{{ client_data["window_outer_height"] }}</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Hardware & Connection</h2>
+        <div class="grid">
+          <div class="data-card">
+            <div class="data-item">
+              <span class="label">Device Memory:</span>
+              <span class="value">{{ client_data["device_memory"] }}GB</span>
+            </div>
+            <div class="data-item">
+              <span class="label">Hardware Concurrency:</span>
+              <span class="value">{{ client_data["hardware_concurrency"] }}</span>
+            </div>
+            <div class="data-item">
+              <span class="label">Max Touch Points:</span>
+              <span class="value">{{ client_data["max_touch_points"] }}</span>
+            </div>
+          </div>
+          <div class="data-card">
+            <div class="data-item">
+              <span class="label">Connection Type:</span>
+              <span class="value">{{ client_data["connection_effective_type"] }}</span>
+            </div>
+            <div class="data-item">
+              <span class="label">Downlink:</span>
+              <span class="value">{{ client_data["connection_downlink"] }}Mbps</span>
+            </div>
+            <div class="data-item">
+              <span class="label">RTT:</span>
+              <span class="value">{{ client_data["connection_rtt"] }}ms</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Features Support</h2>
+        <div class="grid">
+          <div class="data-card">
+            <div class="data-item">
+              <span class="label">Local Storage:</span>
+              <span class="value">{{ client_data["feature_local_storage"] }}</span>
+            </div>
+            <div class="data-item">
+              <span class="label">Session Storage:</span>
+              <span class="value">{{ client_data["feature_session_storage"] }}</span>
+            </div>
+            <div class="data-item">
+              <span class="label">WebGL:</span>
+              <span class="value">{{ client_data["feature_web_gl"] }}</span>
+            </div>
+            <div class="data-item">
+              <span class="label">Web Workers:</span>
+              <span class="value">{{ client_data["feature_web_workers"] }}</span>
+            </div>
+            <div class="data-item">
+              <span class="label">Notifications:</span>
+              <span class="value">{{ client_data["feature_notifications"] }}</span>
+            </div>
+            <div class="data-item">
+              <span class="label">Geolocation:</span>
+              <span class="value">{{ client_data["feature_geolocation"] }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <h2 style="color: blue;">No client data available! (No events from client registered)</h2>
+      {% endif%}
+
+      <div class="section">
+        <h2 class="section-title">Request History</h2>
+        <table class="requests-table">
+          <thead>
+            <tr>
+              <th>Timestamp</th>
+              <th>Path</th>
+              <th>Host</th>
+              <th>IP</th>
+              <!-- <th>Session</th> -->
+            </tr>
+          </thead>
+          <tbody>
+            {% for event in server_events %}
+            <tr>
+              <td>{{ event["timestamp"].replace("T", " ") }}</td>
+              <td>{{ event["request_path"] }}</td>
+              <td>{{ event["host"] }}</td>
+              <td>{{ event["ip"] }}</td>
+              <!-- <td>{{ event["session"] }}</td> -->
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
