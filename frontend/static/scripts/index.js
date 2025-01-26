@@ -20,16 +20,20 @@ video.addEventListener("timeupdate", function () {
 
   if (video.currentTime >= 24.0) {
     if (!fullCard.classList.contains("active")) {
+      staticCard.classList.remove("active");
       dynamicCard.classList.remove("active");
       fullCard.classList.add("active");
     }
   } else if (video.currentTime >= 14.0) {
     if (!dynamicCard.classList.contains("active")) {
       staticCard.classList.remove("active");
+      fullCard.classList.remove("active");
       dynamicCard.classList.add("active");
     }
   } else if (video.currentTime >= 5.0) {
     if (!staticCard.classList.contains("active"))
+      dynamicCard.classList.remove("active");
+      fullCard.classList.remove("active");
       staticCard.classList.add("active");
   }
 });
