@@ -35,7 +35,7 @@ async function getAnalyticsUrl() {
   }
 }
 
-async function registerClickEvent(target) {
+async function registerVideoEvent() {
   if (!analyticsUrl) {
     await getAnalyticsUrl();
   }
@@ -44,7 +44,7 @@ async function registerClickEvent(target) {
     console.error("user-id cookie not present!");
     return;
   }
-  const eventName = "Clicked on #" + target.id;
+  const eventName = "watched full video";
   const data = getUserInfo();
   data.event = eventName;
   data.uid = uid;
