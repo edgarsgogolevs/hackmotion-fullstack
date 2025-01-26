@@ -1,0 +1,38 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "42042:42042"
+    environment:
+      - PORT=42042
+      - FILE_LOG_ROTATE=3
+      - FILE_LOG_SIZE=1
+      - LOGLEVEL=INFO
+      - ANALYTICS_SERVER_URL=http://localhost:42069
+    volumes:
+      - ./frontend/logs:/app/logs
+    # networks:
+    #   - app-network
+
+  analytics:
+    build:
+      context: ./analytics_server
+      dockerfile: Dockerfile
+    ports:
+      - "42069:42069"
+    environment:
+      - FILE_LOG_ROTATE=3
+      - FILE_LOG_SIZE=1
+      - LOGLEVEL=INFO
+      - PORT=42069
+    volumes:
+      - ./analytics_server/logs:/app/logs
+      - ./analytics_server/database:/app/database
+    # networks:
+    #   - app-network
+
+# networks:
+#   app-network:
+#     driver: bridge

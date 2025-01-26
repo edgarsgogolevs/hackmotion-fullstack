@@ -1,6 +1,7 @@
 import logging
 import logging.handlers
 import os
+import sys
 import __main__
 
 
@@ -9,11 +10,11 @@ def init_log(lg):
   LOGLEVEL = os.getenv("LOGLEVEL", "INFO")
   FILE_LOG_SIZE = int(os.getenv("FILE_LOG_SIZE", 1))  # type: ignore
   FILE_LOG_ROTATE = int(os.getenv("FILE_LOG_ROTATE", 3))  # type: ignore
-  logging.basicConfig(level=LOGLEVEL)
+  logging.basicConfig(level=LOGLEVEL, handlers=[])
   formatter = logging.Formatter('%(asctime)s %(levelname)s [%(name)s]: %(message)s')
   log_file_path = os.path.dirname(os.path.realpath(__main__.__file__)) + "/logs/server.log"
   # output handler
-  sh = logging.StreamHandler()
+  sh = logging.StreamHandler(sys.stdout)
   sh.setFormatter(formatter)
   sh.setLevel(LOGLEVEL)
   # file output handler

@@ -5,9 +5,11 @@ import json
 
 from modules import setup_logger
 from modules import analytics
+from db_scripts import init_db
 
 lg = logging.getLogger()
 setup_logger.init_log(lg)
+init_db.init_db()
 
 from flask import Flask, request, send_from_directory, render_template
 from flask_cors import CORS
