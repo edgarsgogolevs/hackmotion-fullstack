@@ -139,6 +139,25 @@
           </div>
         </div>
       </div>
+      <div class="section">
+        <h2 class="section-title">Frontend events</h2>
+        <table class="requests-table">
+          <thead>
+            <tr>
+              <th>Timestamp</th>
+              <th>Event</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for event in client_events %}
+            <tr>
+              <td>{{ event["received_at"].replace("T", " ") }}</td>
+              <td>{{ event["event"] }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
       {% else %}
       <h2 style="color: blue;">No client data available! (No events from client registered)</h2>
       {% endif%}

@@ -13,14 +13,30 @@ NUM_WORKERS = int(os.getenv("ANALYTICS_WORKERS", 2))
 lg.info(f"Creating thread pool with {NUM_WORKERS} workers..")
 executor = ThreadPoolExecutor(max_workers=NUM_WORKERS)
 
-from flask import Flask, send_from_directory, render_template, request, make_response
+from flask import Flask, send_from_directory, render_template, request, make_response, redirect
 
 app = Flask(__name__)
 
+HELP_BREAK_MAPPING = {
+  "break-80": "break&nbsp;80",
+  "break-90": "break&nbsp;90",
+  "break-100": "break&nbsp;100",
+  "break-par": "break&nbsp;par"
+}
+
 
 @app.route("/")
-def landing_page():
-  resp = make_response(render_template("index.html"))
+def default_route():
+  return redirect("/break-80")
+
+
+@app.route("/<string:help_break>")
+def landing_page(help_break: str):
+  if help_break == "":
+    return redirect("/break-80")
+  if help_break not in HELP_BREAK_MAPPING:
+    return "Page not found", 404
+  resp = make_response(render_template("index.html", help_break=HELP_BREAK_MAPPING[help_break]))
   try:
     uid = request.cookies.get(analytics.UID_COOKIE)
     if not uid:

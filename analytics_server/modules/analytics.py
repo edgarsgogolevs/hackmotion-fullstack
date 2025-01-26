@@ -145,6 +145,8 @@ def get_user_summary(uid: str) -> dict:
   lg.info(f"LATEST CLIENT EVENT: {latest_client_event}")
   if latest_client_event:
     ret["client_data"] = latest_client_event[0]
+    client_events = db.select("SELECT * FROM client_events WHERE uid=?", (uid,))
+    ret["client_events"] = client_events
   server_events = db.select("SELECT * FROM server_events WHERE uid=?", (uid,))
   if server_events:
     ret["server_events"] = server_events

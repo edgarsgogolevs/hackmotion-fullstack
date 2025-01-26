@@ -37,6 +37,15 @@ Clicking on user ID will display detailed info that was gathered about this spec
 
 ## Some details
 
+Dynamic content part is displayed based on URL rules:
+  - /break-80
+  - /break-90
+  - /break-100
+  - /break-par
+  
+Dynamic content is rendered on the server because, as far as I understand, this part is defined after user completes quiz, so no need for it to be responsive on client side.
+Route "/" is redirected to "/break-80"
+  
 On request to frontend server it checks if `user-id` cookie is present, if not adds it based on `User-Agent` and IP.
 And then sends following data to analytics server:
 - uid

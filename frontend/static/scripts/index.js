@@ -11,6 +11,34 @@ video.addEventListener("play", function () {
   }
 });
 
+video.addEventListener("ended", registerVideoEvent);
+async function registerVideoEvent() {
+  if (!analyticsUrl) {
+    await getAnalyticsUrl();
+  }
+  const uid = getCookie(UID_COOKIE);
+  if (!uid) {
+    console.error("user-id cookie not present!");
+    return;
+  }
+  const eventName = "watched full video";
+  const data = getUserInfo();
+  data.event = eventName;
+  data.uid = uid;
+  console.log(data);
+  try {
+    const resp = await fetch(analyticsUrl, {
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+    if (!resp.ok) {
+      throw new Error("Failed to fetch analytics URL. Status: " + resp.status);
+    }
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
 video.addEventListener("timeupdate", function () {
   // console.log(video.currentTime);
   const progressVal = (video.currentTime / video.duration) * 100;
@@ -53,5 +81,4 @@ function startNowHandler(target) {
   const video = document.getElementById("videoTutorial");
   video.scrollIntoView({ behavior: "smooth" });
   video.play();
-  registerClickEvent(target);
 }
