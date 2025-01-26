@@ -11,9 +11,10 @@ UID_COOKIE = "user-id"
 UID_COOKIE_MAX_AGE = 3600 * 24
 
 ANALYTICS_SERVER = str(os.getenv("ANALYTICS_SERVER_URL"))
+ANALYTICS_CLIENT = str(os.getenv("ANALYTICS_CLIENT_URL"))
 lg.info(f"Analytics server set to: {ANALYTICS_SERVER}")
 SERVER_EVENT_ENDPOINT = f"{ANALYTICS_SERVER}/register_event/server"
-CLIENT_EVENT_ENDPOINT = f"{ANALYTICS_SERVER}/register_event/client"
+CLIENT_EVENT_ENDPOINT = f"{ANALYTICS_CLIENT}/register_event/client"
 
 
 def create_user_id(req: Request):

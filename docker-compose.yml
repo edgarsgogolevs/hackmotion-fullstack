@@ -10,11 +10,12 @@ services:
       - FILE_LOG_ROTATE=3
       - FILE_LOG_SIZE=1
       - LOGLEVEL=INFO
-      - ANALYTICS_SERVER_URL=http://localhost:42069
+      - ANALYTICS_SERVER_URL=http://analytics:42069
+      - ANALYTICS_CLIENT_URL=http://localhost:42069
     volumes:
       - ./frontend/logs:/app/logs
-    # networks:
-    #   - app-network
+    networks:
+      - app-network
 
   analytics:
     build:
@@ -27,12 +28,13 @@ services:
       - FILE_LOG_SIZE=1
       - LOGLEVEL=INFO
       - PORT=42069
+      - ANALYTICS_WORKERS=1
     volumes:
       - ./analytics_server/logs:/app/logs
       - ./analytics_server/database:/app/database
-    # networks:
-    #   - app-network
+    networks:
+      - app-network
 
-# networks:
-#   app-network:
-#     driver: bridge
+networks:
+  app-network:
+    driver: bridge

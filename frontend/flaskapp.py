@@ -9,15 +9,13 @@ from modules import analytics
 lg = logging.getLogger()
 setup_logger.init_log(lg)
 
-NUM_WORKERS = int(os.getenv("ANALYTICS_WORKERS", 10))
+NUM_WORKERS = int(os.getenv("ANALYTICS_WORKERS", 2))
 lg.info(f"Creating thread pool with {NUM_WORKERS} workers..")
 executor = ThreadPoolExecutor(max_workers=NUM_WORKERS)
 
 from flask import Flask, send_from_directory, render_template, request, make_response
 
 app = Flask(__name__)
-
-# TODO: endpoint to get analytics server address (or send it in any other way)
 
 
 @app.route("/")

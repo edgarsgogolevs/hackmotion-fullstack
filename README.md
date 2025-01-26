@@ -17,6 +17,10 @@ In the project root run:
 docker-compose up --build
 ```
 
+> [!WARNING]  
+> Environment should be configured so that `ANALYTICS_SERVER_URL` is url accesible from frontend container and `ANALYTICS_CLIENT_URL` should be accessible from the browser.
+> In default configuration: `ANALYTICS_SERVER_URL=http://analytics:42069` and `ANALYTICS_CLIENT_URL=http://localhost:42069`
+
 By default services are ran on:
 - Frontend [http://localhost:42042](http://localhost:42042)
 - Analytics [http://localhost:42069](http://localhost:42069)
